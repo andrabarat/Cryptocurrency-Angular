@@ -10,7 +10,8 @@ import { CoinService } from './coin.service';
 })
 export class CoinComponent implements OnInit {
   coin!: Coin;
-  isFetched = false;
+  areFetched = false;
+  isError = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -30,9 +31,15 @@ export class CoinComponent implements OnInit {
   }
 
   getCoin(coinId: string): void {
-    this.coinService.getCoin(coinId).subscribe((data) => {
-      this.coin = data;
-      this.isFetched = true;
-    });
+    this.coinService.getCoin(coinId).subscribe(
+      (data) => {
+        this.coin = data;
+        this.areFetched = true;
+      },
+      () => {
+        this.areFetched = true;
+        this.isError = true;
+      }
+    );
   }
 }

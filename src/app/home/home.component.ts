@@ -10,13 +10,20 @@ import { Coin } from '../shared/models';
 export class HomeComponent implements OnInit {
   coins: Coin[] = [];
   areFetched = false;
+  isError = false;
 
   constructor(private homeService: HomeService) {}
 
   ngOnInit(): void {
-    this.homeService.getCoins().subscribe((data) => {
-      this.coins = data;
-      this.areFetched = true;
-    });
+    this.homeService.getCoins().subscribe(
+      (data: Coin[]) => {
+        this.coins = data;
+        this.areFetched = true;
+      },
+      () => {
+        this.areFetched = true;
+        this.isError = true;
+      }
+    );
   }
 }

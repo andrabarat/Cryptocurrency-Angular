@@ -10,8 +10,14 @@ import { HomeService } from './home.service';
 import { NzGridModule } from 'ng-zorro-antd/grid';
 import { NzCardModule } from 'ng-zorro-antd/card';
 import { NzSkeletonModule } from 'ng-zorro-antd/skeleton';
+import { NzResultModule } from 'ng-zorro-antd/result';
 
-const nzModules = [NzGridModule, NzCardModule, NzSkeletonModule];
+const nzModules = [
+  NzGridModule,
+  NzCardModule,
+  NzSkeletonModule,
+  NzResultModule,
+];
 
 @NgModule({
   declarations: [HomeComponent, CoinCardComponent, CoinsContainerComponent],

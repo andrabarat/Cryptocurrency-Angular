@@ -1,5 +1,15 @@
 <ng-container *ngIf="areFetched; else isFetching">
-  <app-coins-container [coins]="coins"></app-coins-container>
+  <ng-container *ngIf="isError; else noError">
+    <nz-result
+      nzStatus="404"
+      nzTitle="There seems to be some problems!"
+      nzSubTitle="Sorry, please try again later."
+    >
+    </nz-result>
+  </ng-container>
+  <ng-template #noError>
+    <app-coins-container [coins]="coins"></app-coins-container>
+  </ng-template>
 </ng-container>
 <ng-template #isFetching>
   <nz-skeleton [nzActive]="true"></nz-skeleton>
