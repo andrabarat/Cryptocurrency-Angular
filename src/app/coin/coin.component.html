@@ -1,0 +1,15 @@
+<ng-container *ngIf="isFetched; else isFetching">
+  <div>Coin id: {{ this.coin.id }}</div>
+  <div>Coin name: {{ this.coin.name }}</div>
+  <div>Coin symbol: {{ this.coin.symbol }}</div>
+  <div>Coin date: {{ this.coin.date }}</div>
+  <div>Coin high: {{ this.coin.high }}</div>
+  <div>Coin low: {{ this.coin.low }}</div>
+  <div>Coin open: {{ this.coin.open }}</div>
+  <div>Coin close: {{ this.coin.close }}</div>
+  <div>Coin volume: {{ this.coin.volume }}</div>
+  <div>Coin marketCap: {{ this.coin.marketCap }}</div>
+</ng-container>
+<ng-template #isFetching>
+  <nz-skeleton [nzActive]="true"></nz-skeleton>
+</ng-template>

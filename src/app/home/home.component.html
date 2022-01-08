@@ -1,0 +1,6 @@
+<ng-container *ngIf="areFetched; else isFetching">
+  <app-coins-container [coins]="coins"></app-coins-container>
+</ng-container>
+<ng-template #isFetching>
+  <nz-skeleton [nzActive]="true"></nz-skeleton>
+</ng-template>

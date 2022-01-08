@@ -1,0 +1,10 @@
+<div class="coins" nz-row [nzGutter]="[16, 16]">
+  <div
+    *ngFor="let coin of coins"
+    nz-col
+    [nzSpan]="8"
+    [routerLink]="['/coin', coin.id]"
+  >
+    <app-coin-card [coin]="coin"></app-coin-card>
+  </div>
+</div>
