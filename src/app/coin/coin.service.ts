@@ -12,9 +12,9 @@ import { Coin } from '../shared/models';
 export class CoinService {
   constructor(private http: HttpClient) {}
 
-  getCoin(coinId: string): Observable<Coin> {
+  getCoins(symbol: string): Observable<Coin[]> {
     return this.http
-      .get(environment.apiUrl + '/coins/' + coinId)
-      .pipe(map((data) => data as Coin));
+      .get(environment.apiUrl + '/coins/' + symbol)
+      .pipe(map((data) => data as Coin[]));
   }
 }

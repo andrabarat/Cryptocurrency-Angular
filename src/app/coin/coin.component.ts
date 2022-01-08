@@ -9,7 +9,8 @@ import { CoinService } from './coin.service';
   styleUrls: ['./coin.component.scss'],
 })
 export class CoinComponent implements OnInit {
-  coin!: Coin;
+  symbol!: string | null;
+  coins!: Coin[];
   areFetched = false;
   isError = false;
 
@@ -21,19 +22,19 @@ export class CoinComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.paramMap.subscribe((params: ParamMap) => {
-      const coinId = params.get('coin');
-      if (coinId) {
-        this.getCoin(coinId);
+      this.symbol = params.get('coin');
+      if (this.symbol) {
+        this.getCoins(this.symbol);
       } else {
         this.router.navigate(['/home']);
       }
     });
   }
 
-  getCoin(coinId: string): void {
-    this.coinService.getCoin(coinId).subscribe(
-      (data) => {
-        this.coin = data;
+  getCoins(symbol: string): void {
+    this.coinService.getCoins(symbol).subscribe(
+      (data: Coin[]) => {
+        this.coins = data;
         this.areFetched = true;
       },
       () => {

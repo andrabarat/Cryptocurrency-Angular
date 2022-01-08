@@ -1,23 +1,89 @@
+<div nz-row nzJustify="space-around" nzAlign="middle">
+  <h1 nz-col>{{ symbol }}</h1>
+</div>
+<nz-divider></nz-divider>
 <ng-container *ngIf="areFetched; else isFetching">
-  <ng-container *ngIf="isError; else noError">
+  <ng-container *ngIf="!isError; else error">
+    <nz-table #basicTable [nzData]="coins" [nzFrontPagination]="false">
+      <thead>
+        <tr>
+          <th [nzAlign]="'right'">Date</th>
+          <th [nzAlign]="'right'">High</th>
+          <th [nzAlign]="'right'">Low</th>
+          <th [nzAlign]="'right'">Open</th>
+          <th [nzAlign]="'right'">Close</th>
+          <th [nzAlign]="'right'">Volume</th>
+          <th [nzAlign]="'right'">MarketCap</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let data of basicTable.data; let i = index">
+          <td [nzAlign]="'right'">{{ data.date | date: "dd-MM-yyyy" }}</td>
+          <td [nzAlign]="'right'">
+            <span class="arrow">{{ data.high | number: "1.0" }}</span>
+            <ng-container *ngIf="i < basicTable.data.length - 1">
+              <app-comparable-icon
+                [value]="basicTable.data[i].high"
+                [previousValue]="basicTable.data[i + 1].high"
+              ></app-comparable-icon>
+            </ng-container>
+          </td>
+          <td [nzAlign]="'right'">
+            <span class="arrow">{{ data.low | number: "1.0" }}</span>
+            <ng-container *ngIf="i < basicTable.data.length - 1">
+              <app-comparable-icon
+                [value]="basicTable.data[i].low"
+                [previousValue]="basicTable.data[i + 1].low"
+              ></app-comparable-icon>
+            </ng-container>
+          </td>
+          <td [nzAlign]="'right'">
+            <span class="arrow">{{ data.open | number: "1.0" }}</span>
+            <ng-container *ngIf="i < basicTable.data.length - 1">
+              <app-comparable-icon
+                [value]="basicTable.data[i].open"
+                [previousValue]="basicTable.data[i + 1].open"
+              ></app-comparable-icon>
+            </ng-container>
+          </td>
+          <td [nzAlign]="'right'">
+            <span class="arrow">{{ data.close | number: "1.0" }}</span>
+            <ng-container *ngIf="i < basicTable.data.length - 1">
+              <app-comparable-icon
+                [value]="basicTable.data[i].close"
+                [previousValue]="basicTable.data[i + 1].close"
+              ></app-comparable-icon>
+            </ng-container>
+          </td>
+          <td [nzAlign]="'right'">
+            <span class="arrow">{{ data.volume | number: "1.0" }}</span>
+            <ng-container *ngIf="i < basicTable.data.length - 1">
+              <app-comparable-icon
+                [value]="basicTable.data[i].volume"
+                [previousValue]="basicTable.data[i + 1].volume"
+              ></app-comparable-icon>
+            </ng-container>
+          </td>
+          <td [nzAlign]="'right'">
+            <span class="arrow">{{ data.marketCap | number: "1.0" }}</span>
+            <ng-container *ngIf="i < basicTable.data.length - 1">
+              <app-comparable-icon
+                [value]="basicTable.data[i].marketCap"
+                [previousValue]="basicTable.data[i + 1].marketCap"
+              ></app-comparable-icon>
+            </ng-container>
+          </td>
+        </tr>
+      </tbody>
+    </nz-table>
+  </ng-container>
+  <ng-template #error>
     <nz-result
       nzStatus="404"
       nzTitle="There seems to be some problems!"
       nzSubTitle="Sorry, please try again later."
     >
     </nz-result>
-  </ng-container>
-  <ng-template #noError>
-    <div>Coin id: {{ this.coin.id }}</div>
-    <div>Coin name: {{ this.coin.name }}</div>
-    <div>Coin symbol: {{ this.coin.symbol }}</div>
-    <div>Coin date: {{ this.coin.date }}</div>
-    <div>Coin high: {{ this.coin.high }}</div>
-    <div>Coin low: {{ this.coin.low }}</div>
-    <div>Coin open: {{ this.coin.open }}</div>
-    <div>Coin close: {{ this.coin.close }}</div>
-    <div>Coin volume: {{ this.coin.volume }}</div>
-    <div>Coin marketCap: {{ this.coin.marketCap }}</div>
   </ng-template>
 </ng-container>
 <ng-template #isFetching>
