@@ -1,7 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
-import { Coin } from '../shared/models';
-import { CoinService } from './coin.service';
+import { CoinDetailsComponent } from './coin-details/coin-details.component';
 
 @Component({
   selector: 'app-coin',
@@ -10,46 +9,20 @@ import { CoinService } from './coin.service';
 })
 export class CoinComponent implements OnInit {
   symbol!: string | null;
-  coins!: Coin[];
-  areFetched = false;
-  isError = false;
+  @ViewChild(CoinDetailsComponent) child: any;
 
-  constructor(
-    private route: ActivatedRoute,
-    private router: Router,
-    private coinService: CoinService
-  ) {}
+  constructor(private route: ActivatedRoute, private router: Router) {}
 
   ngOnInit(): void {
     this.route.paramMap.subscribe((params: ParamMap) => {
       this.symbol = params.get('coin');
-      if (this.symbol) {
-        this.getCoins(this.symbol);
-      } else {
+      if (!this.symbol) {
         this.router.navigate(['/home']);
       }
     });
   }
 
-  getCoins(symbol: string): void {
-    this.coinService.getCoins(symbol).subscribe(
-      (data: Coin[]) => {
-        this.coins = data;
-        this.areFetched = true;
-      },
-      () => {
-        this.areFetched = true;
-        this.isError = true;
-      }
-    );
-  }
-
-  formatNumberSeparator(text: number): string {
-    const numberArray = text.toString().split('.');
-    const beforeComma = numberArray[0].replace(
-      /(\d)(?=(\d{3})+(?!\d))/g,
-      '$1,'
-    );
-    return beforeComma + '.' + numberArray[1];
+  setCoinDetails() {
+    this.child.getCoins(this.symbol);
   }
 }

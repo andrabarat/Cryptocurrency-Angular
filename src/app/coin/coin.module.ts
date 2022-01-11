@@ -13,6 +13,7 @@ import { NzTableModule } from 'ng-zorro-antd/table';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzDividerModule } from 'ng-zorro-antd/divider';
 import { NzGridModule } from 'ng-zorro-antd/grid';
+import { NzTabsModule } from 'ng-zorro-antd/tabs';
 
 /** Load icons **/
 import { IconDefinition } from '@ant-design/icons-angular';
@@ -21,6 +22,7 @@ import {
   ArrowRightOutline,
   ArrowDownOutline,
 } from '@ant-design/icons-angular/icons';
+import { CoinDetailsComponent } from './coin-details/coin-details.component';
 
 const icons: IconDefinition[] = [
   ArrowUpOutline,
@@ -34,9 +36,10 @@ const nzModules = [
   NzTableModule,
   NzDividerModule,
   NzGridModule,
+  NzTabsModule,
 ];
 @NgModule({
-  declarations: [CoinComponent, ComparableIconComponent],
+  declarations: [CoinComponent, ComparableIconComponent, CoinDetailsComponent],
   imports: [
     CommonModule,
     CoinRoutingModule,
