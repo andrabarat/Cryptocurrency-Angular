@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Coin } from '../../shared/models';
+import { ComparableCoins } from '../../shared/models';
 
 @Component({
   selector: 'app-coins-container',
@@ -7,5 +7,5 @@ import { Coin } from '../../shared/models';
   styleUrls: ['./coins-container.component.scss'],
 })
 export class CoinsContainerComponent {
-  @Input() coins!: Coin[];
+  @Input() coins!: ComparableCoins[];
 }

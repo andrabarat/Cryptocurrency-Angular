@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HomeService } from './home.service';
-import { Coin } from '../shared/models';
+import { ComparableCoins } from '../shared/models';
 
 @Component({
   selector: 'app-home',
@@ -8,7 +8,7 @@ import { Coin } from '../shared/models';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
-  coins: Coin[] = [];
+  coins: ComparableCoins[] = [];
   areFetched = false;
   isError = false;
 
@@ -16,7 +16,7 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.homeService.getCoins().subscribe(
-      (data: Coin[]) => {
+      (data: ComparableCoins[]) => {
         this.coins = data;
         this.areFetched = true;
       },

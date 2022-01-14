@@ -1,3 +1,12 @@
-<nz-card [nzTitle]="coin.symbol" class="coin">
-  <p>{{ coin.name }}</p>
-</nz-card>
+<div class="test">
+  <nz-card [nzTitle]="title" class="coin">
+    <p>{{ coin.name }}</p>
+  </nz-card>
+</div>
+
+<ng-template #title>
+  <div class="card-title">
+    <span> {{ coin.symbol }}</span>
+    <span> {{ coin.high }}</span>
+  </div>
+</ng-template>

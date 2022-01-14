@@ -3,8 +3,8 @@
     *ngFor="let coin of coins"
     nz-col
     [nzSpan]="8"
-    [routerLink]="['/coin', coin.symbol]"
+    [routerLink]="['/coin', coin.currentCoin.symbol]"
   >
-    <app-coin-card [coin]="coin"></app-coin-card>
+    <app-coin-card [coin]="coin.currentCoin"></app-coin-card>
   </div>
 </div>
