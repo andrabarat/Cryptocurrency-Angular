@@ -1,6 +1,11 @@
 <ng-container *ngIf="areFetched; else isFetching">
   <ng-container *ngIf="!isError; else error">
-    <nz-table #basicTable [nzData]="coins" [nzFrontPagination]="false">
+    <nz-table
+      #basicTable
+      [nzBordered]="true"
+      [nzData]="coins"
+      [nzFrontPagination]="false"
+    >
       <thead>
         <tr>
           <th [nzAlign]="'right'">Date</th>

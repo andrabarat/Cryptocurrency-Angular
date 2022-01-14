@@ -1,3 +1,5 @@
+import { Status } from '.';
+
 export interface Coin {
   id: string;
   name: string;
@@ -9,4 +11,5 @@ export interface Coin {
   close: number;
   volume: number;
   marketCap: number;
+  status: Status;
 }
