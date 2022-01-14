@@ -1,12 +1,15 @@
-<div class="test">
-  <nz-card [nzTitle]="title" class="coin">
-    <p>{{ coin.name }}</p>
-  </nz-card>
-</div>
+<nz-card [nzTitle]="title" class="coin">
+  <div class="coin-body">
+    <span>{{ coin.name }}</span>
+    <span>
+      <app-price-value [comparableCoins]="comparableCoins"></app-price-value
+    ></span>
+  </div>
+</nz-card>
 
 <ng-template #title>
-  <div class="card-title">
+  <div class="coin-title">
     <span> {{ coin.symbol }}</span>
-    <span> {{ coin.high }}</span>
+    <span>$ {{ coin.high | numberWithSeparator }}</span>
   </div>
 </ng-template>

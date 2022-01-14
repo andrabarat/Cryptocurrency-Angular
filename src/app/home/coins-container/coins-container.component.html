@@ -1,10 +1,10 @@
 <div class="coins" nz-row [nzGutter]="[16, 16]">
   <div
-    *ngFor="let coin of coins"
+    *ngFor="let comparableCoins of coins"
     nz-col
     [nzSpan]="8"
-    [routerLink]="['/coin', coin.currentCoin.symbol]"
+    [routerLink]="['/coin', comparableCoins.currentCoin.symbol]"
   >
-    <app-coin-card [coin]="coin.currentCoin"></app-coin-card>
+    <app-coin-card [comparableCoins]="comparableCoins"></app-coin-card>
   </div>
 </div>

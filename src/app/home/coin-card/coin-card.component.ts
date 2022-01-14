@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 
-import { Coin } from '../../shared/models';
+import { Coin, ComparableCoins } from '../../shared/models';
 
 @Component({
   selector: 'app-coin-card',
@@ -8,5 +8,9 @@ import { Coin } from '../../shared/models';
   styleUrls: ['./coin-card.component.scss'],
 })
 export class CoinCardComponent {
-  @Input() coin!: Coin;
+  @Input() comparableCoins!: ComparableCoins;
+
+  get coin(): Coin {
+    return this.comparableCoins.currentCoin;
+  }
 }

@@ -1,9 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { SharedModule } from '../shared/shared.module';
 
 import { CoinRoutingModule } from './coin-routing.module';
 import { CoinComponent } from './coin.component';
 import { ComparableIconComponent } from './comparable-icon/comparable-icon.component';
+import { CoinDetailsComponent } from './coin-details/coin-details.component';
 import { CoinService } from './coin.service';
 
 /** Load ng modules **/
@@ -22,7 +24,6 @@ import {
   ArrowRightOutline,
   ArrowDownOutline,
 } from '@ant-design/icons-angular/icons';
-import { CoinDetailsComponent } from './coin-details/coin-details.component';
 
 const icons: IconDefinition[] = [
   ArrowUpOutline,
@@ -43,6 +44,7 @@ const nzModules = [
   imports: [
     CommonModule,
     CoinRoutingModule,
+    SharedModule,
     ...nzModules,
     NzIconModule.forChild(icons),
   ],

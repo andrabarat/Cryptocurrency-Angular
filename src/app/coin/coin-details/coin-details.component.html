@@ -21,8 +21,8 @@
         <tr *ngFor="let data of basicTable.data; let i = index">
           <td [nzAlign]="'right'">{{ data.date | date: "dd-MM-yyyy" }}</td>
           <td [nzAlign]="'right'">
-            <span class="space-between">{{
-              formatNumberSeparator(data.high)
+            <span class="space-between">$ {{
+              data.high | numberWithSeparator
             }}</span>
             <ng-container *ngIf="i < basicTable.data.length - 1">
               <app-comparable-icon
@@ -32,8 +32,8 @@
             </ng-container>
           </td>
           <td [nzAlign]="'right'">
-            <span class="space-between">{{
-              formatNumberSeparator(data.low)
+            <span class="space-between">$ {{
+              data.low | numberWithSeparator
             }}</span>
             <ng-container *ngIf="i < basicTable.data.length - 1">
               <app-comparable-icon
@@ -44,7 +44,7 @@
           </td>
           <td [nzAlign]="'right'">
             <span class="space-between">{{
-              formatNumberSeparator(data.open)
+              data.open | numberWithSeparator
             }}</span>
             <ng-container *ngIf="i < basicTable.data.length - 1">
               <app-comparable-icon
@@ -55,7 +55,7 @@
           </td>
           <td [nzAlign]="'right'">
             <span class="space-between">{{
-              formatNumberSeparator(data.close)
+              data.close | numberWithSeparator
             }}</span>
             <ng-container *ngIf="i < basicTable.data.length - 1">
               <app-comparable-icon
@@ -66,7 +66,7 @@
           </td>
           <td [nzAlign]="'right'">
             <span class="space-between">{{
-              formatNumberSeparator(data.volume)
+              data.volume | numberWithSeparator
             }}</span>
             <ng-container *ngIf="i < basicTable.data.length - 1">
               <app-comparable-icon
@@ -77,7 +77,7 @@
           </td>
           <td [nzAlign]="'right'">
             <span class="space-between">{{
-              formatNumberSeparator(data.marketCap)
+              data.marketCap | numberWithSeparator
             }}</span>
             <ng-container *ngIf="i < basicTable.data.length - 1">
               <app-comparable-icon
