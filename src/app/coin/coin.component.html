@@ -6,7 +6,7 @@
   <ng-container *ngIf="!isError; else error">
     <nz-tabset [nzSize]="'large'" nzCentered nzType="card">
       <nz-tab nzTitle="Stats">
-        <app-coin-stats></app-coin-stats>
+        <app-coin-stats [coins]="coins"></app-coin-stats>
       </nz-tab>
       <nz-tab nzTitle="Details">
         <app-coin-details [coins]="coins"></app-coin-details>

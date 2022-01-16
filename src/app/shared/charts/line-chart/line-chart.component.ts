@@ -33,6 +33,8 @@ export class LineChartComponent implements OnInit {
             backgroundColor: this.backgroundColor,
             borderColor: this.borderColor,
             borderWidth: 2,
+            pointRadius: 0,
+            fill: true,
           },
         ],
       },
