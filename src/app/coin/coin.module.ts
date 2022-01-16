@@ -6,6 +6,7 @@ import { CoinRoutingModule } from './coin-routing.module';
 import { CoinComponent } from './coin.component';
 import { ComparableIconComponent } from './comparable-icon/comparable-icon.component';
 import { CoinDetailsComponent } from './coin-details/coin-details.component';
+import { CoinStatsComponent } from './coin-stats/coin-stats.component';
 import { CoinService } from './coin.service';
 
 /** Load ng modules **/
@@ -40,7 +41,12 @@ const nzModules = [
   NzTabsModule,
 ];
 @NgModule({
-  declarations: [CoinComponent, ComparableIconComponent, CoinDetailsComponent],
+  declarations: [
+    CoinComponent,
+    ComparableIconComponent,
+    CoinDetailsComponent,
+    CoinStatsComponent,
+  ],
   imports: [
     CommonModule,
     CoinRoutingModule,

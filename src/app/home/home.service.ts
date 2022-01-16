@@ -35,7 +35,7 @@ export class HomeService {
     if (currentCoin.high > previousCoin.high) {
       return Status.Increased;
     }
-    if (currentCoin.high == previousCoin.high) {
+    if (currentCoin.high === previousCoin.high) {
       return Status.Stalled;
     }
     if (currentCoin.high < previousCoin.high) {

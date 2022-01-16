@@ -1,5 +1,4 @@
-import { Component } from '@angular/core';
-import { CoinService } from '../coin.service';
+import { Component, Input } from '@angular/core';
 import { Coin } from 'src/app/shared/models';
 
 @Component({
@@ -8,22 +7,5 @@ import { Coin } from 'src/app/shared/models';
   styleUrls: ['./coin-details.component.scss'],
 })
 export class CoinDetailsComponent {
-  constructor(private coinService: CoinService) {}
-
-  coins!: Coin[];
-  areFetched = false;
-  isError = false;
-
-  getCoins(symbol: string): void {
-    this.coinService.getCoins(symbol).subscribe(
-      (data: Coin[]) => {
-        this.coins = data;
-        this.areFetched = true;
-      },
-      () => {
-        this.areFetched = true;
-        this.isError = true;
-      }
-    );
-  }
+  @Input() coins!: Coin[];
 }

@@ -2,9 +2,26 @@
   <h1 nz-col class="title">{{ symbol }}</h1>
 </div>
 <nz-divider></nz-divider>
-<nz-tabset [nzSize]="'large'" nzCentered nzType="card">
-  <nz-tab nzTitle="Stats">Coin stats</nz-tab>
-  <nz-tab nzTitle="Details" (nzSelect)="setCoinDetails()">
-    <app-coin-details></app-coin-details>
-  </nz-tab>
-</nz-tabset>
+<ng-container *ngIf="areFetched; else isFetching">
+  <ng-container *ngIf="!isError; else error">
+    <nz-tabset [nzSize]="'large'" nzCentered nzType="card">
+      <nz-tab nzTitle="Stats">
+        <app-coin-stats></app-coin-stats>
+      </nz-tab>
+      <nz-tab nzTitle="Details">
+        <app-coin-details [coins]="coins"></app-coin-details>
+      </nz-tab>
+    </nz-tabset>
+  </ng-container>
+  <ng-template #error>
+    <nz-result
+      nzStatus="404"
+      nzTitle="There seems to be some problems!"
+      nzSubTitle="Sorry, please try again later."
+    >
+    </nz-result>
+  </ng-template>
+</ng-container>
+<ng-template #isFetching>
+  <nz-skeleton [nzActive]="true"></nz-skeleton>
+</ng-template>
