@@ -4,6 +4,7 @@ import { CoinStatsComponent } from './coin-stats/coin-stats.component';
 import { CoinDetailsComponent } from './coin-details/coin-details.component';
 import { CoinService } from './coin.service';
 import { Coin } from '../shared/models';
+import { Logger } from '../shared/logger/logger';
 
 @Component({
   selector: 'app-coin',
@@ -17,11 +18,15 @@ export class CoinComponent implements OnInit {
   areFetched = false;
   isError = false;
 
+  logger!: Logger;
+
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private coinService: CoinService
-  ) {}
+  ) {
+    this.logger = new Logger();
+  }
 
   ngOnInit(): void {
     this.route.paramMap.subscribe((params: ParamMap) => {
@@ -35,14 +40,17 @@ export class CoinComponent implements OnInit {
   }
 
   getCoins(symbol: string): void {
+    this.logger.start('getCoins');
     this.coinService.getCoins(symbol).subscribe(
       (data: Coin[]) => {
         this.coins = data;
         this.areFetched = true;
+        this.logger.stop();
       },
       () => {
         this.areFetched = true;
         this.isError = true;
+        this.logger.stop();
       }
     );
   }

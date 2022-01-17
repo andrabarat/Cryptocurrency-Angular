@@ -17,6 +17,7 @@ import {
   RightOutline,
   DownOutline,
 } from '@ant-design/icons-angular/icons';
+import { DoughnutChartComponent } from './charts/doughnut-chart/doughnut-chart.component';
 
 const icons: IconDefinition[] = [UpOutline, RightOutline, DownOutline];
 
@@ -25,8 +26,14 @@ const icons: IconDefinition[] = [UpOutline, RightOutline, DownOutline];
     NumberWithSeparatorPipe,
     PriceValueComponent,
     LineChartComponent,
+    DoughnutChartComponent,
   ],
-  exports: [NumberWithSeparatorPipe, PriceValueComponent, LineChartComponent],
+  exports: [
+    NumberWithSeparatorPipe,
+    PriceValueComponent,
+    LineChartComponent,
+    DoughnutChartComponent,
+  ],
   imports: [CommonModule, ...nzModules, NzIconModule.forChild(icons)],
 })
 export class SharedModule {}

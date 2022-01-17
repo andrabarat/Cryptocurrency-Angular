@@ -11,6 +11,7 @@ Chart.register(...registerables);
 export class LineChartComponent implements OnInit {
   @Input() labels!: string[];
   @Input() title!: string;
+  @Input() label!: string;
   @Input() data!: number[];
   @Input() backgroundColor!: string;
   @Input() borderColor!: string;
@@ -28,7 +29,7 @@ export class LineChartComponent implements OnInit {
         labels: this.labels,
         datasets: [
           {
-            label: this.title,
+            label: this.label,
             data: this.data,
             backgroundColor: this.backgroundColor,
             borderColor: this.borderColor,
@@ -39,9 +40,19 @@ export class LineChartComponent implements OnInit {
         ],
       },
       options: {
+        responsive: true,
         scales: {
           y: {
             beginAtZero: true,
+          },
+        },
+        plugins: {
+          legend: {
+            position: 'top',
+          },
+          title: {
+            display: true,
+            text: this.title,
           },
         },
       },
