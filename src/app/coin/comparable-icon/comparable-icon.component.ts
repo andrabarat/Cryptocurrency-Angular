@@ -8,4 +8,12 @@ import { Component, Input } from '@angular/core';
 export class ComparableIconComponent {
   @Input() value!: number;
   @Input() previousValue!: number;
+
+  get valueAsNumber(): number {
+    return parseFloat(this.value as unknown as string);
+  }
+
+  get previousValueAsNumber(): number {
+    return parseFloat(this.previousValue as unknown as string);
+  }
 }

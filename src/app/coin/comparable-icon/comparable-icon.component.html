@@ -1,9 +1,9 @@
-<ng-container *ngIf="value > previousValue"
+<ng-container *ngIf="valueAsNumber > previousValueAsNumber"
   ><i nz-icon nzType="arrow-up" nzTheme="outline" [nzRotate]="45"></i
 ></ng-container>
-<ng-container *ngIf="value == previousValue"
+<ng-container *ngIf="valueAsNumber === previousValueAsNumber"
   ><i nz-icon nzType="arrow-right" nzTheme="outline"></i
 ></ng-container>
-<ng-container *ngIf="value < previousValue"
+<ng-container *ngIf="valueAsNumber < previousValueAsNumber"
   ><i nz-icon nzType="arrow-down" nzTheme="outline" [nzRotate]="45"></i
 ></ng-container>
