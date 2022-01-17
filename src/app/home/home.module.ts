@@ -9,17 +9,17 @@ import { CoinsContainerComponent } from './coins-container/coins-container.compo
 import { HomeService } from './home.service';
 
 import { NzGridModule } from 'ng-zorro-antd/grid';
-import { NzCardModule } from 'ng-zorro-antd/card';
 import { NzSkeletonModule } from 'ng-zorro-antd/skeleton';
 import { NzResultModule } from 'ng-zorro-antd/result';
 import { NzTagModule } from 'ng-zorro-antd/tag';
+import { NzDividerModule } from 'ng-zorro-antd/divider';
 
 const nzModules = [
   NzGridModule,
-  NzCardModule,
   NzSkeletonModule,
   NzResultModule,
   NzTagModule,
+  NzDividerModule
 ];
 
 @NgModule({

@@ -1,15 +1,17 @@
-<nz-card [nzTitle]="title" class="coin">
-  <div class="coin-body">
-    <span>{{ coin.name }}</span>
-    <span>
-      <app-price-value [comparableCoins]="comparableCoins"></app-price-value
-    ></span>
-  </div>
-</nz-card>
-
-<ng-template #title>
+<div
+  class="coin"
+  [ngClass]="{
+    decreased: coin.status === status.Decreased,
+    stalled: coin.status === status.Stalled,
+    increased: coin.status === status.Increased
+  }"
+>
   <div class="coin-title">
-    <span> {{ coin.symbol }}</span>
-    <span>$ {{ coin.high | numberWithSeparator }}</span>
+    <span class="name">{{ coin.name }}</span>
+    <span class="value">$ {{ coin.high | numberWithSeparator }}</span>
   </div>
-</ng-template>
+  <div class="coin-body">
+    <span class="symbol"> {{ coin.symbol }}</span>
+    <app-price-value [comparableCoins]="comparableCoins"></app-price-value>
+  </div>
+</div>

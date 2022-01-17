@@ -1,14 +1,14 @@
 <ng-container [ngSwitch]="comparableCoins.currentCoin.status">
-  <nz-tag *ngSwitchCase="status.Increased" [nzColor]="'#27ae60'">
+  <nz-tag *ngSwitchCase="status.Increased" [nzColor]="'#27ae60'" class="tag">
     <i nz-icon nzType="up"></i>
-    <span>{{ value }} %</span>
+    <span class="value">{{ value }} %</span>
   </nz-tag>
-  <nz-tag *ngSwitchCase="status.Stalled" [nzColor]="'#2c3e50'">
+  <nz-tag *ngSwitchCase="status.Stalled" [nzColor]="'#2c3e50'" class="tag">
     <i nz-icon nzType="right"></i>
-    <span>{{ value }} %</span>
+    <span class="value">{{ value }} %</span>
   </nz-tag>
-  <nz-tag *ngSwitchCase="status.Decreased" [nzColor]="'#c0392b'">
+  <nz-tag *ngSwitchCase="status.Decreased" [nzColor]="'#c0392b'" class="tag">
     <i nz-icon nzType="down"></i>
-    <span>{{ value }} %</span>
+    <span class="value">{{ value }} %</span>
   </nz-tag>
 </ng-container>

@@ -16,7 +16,7 @@ export class CoinStatsComponent implements OnInit {
   @Input() coins!: Coin[];
 
   get orderedCoins(): Coin[] {
-    const orderedCoins = this.coins;
+    const orderedCoins = [...this.coins];
     orderedCoins.sort(
       (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime()
     );
