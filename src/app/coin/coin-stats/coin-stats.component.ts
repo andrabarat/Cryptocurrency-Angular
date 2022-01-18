@@ -37,8 +37,12 @@ export class CoinStatsComponent implements OnInit {
   doughnutChartData!: number[];
   doughnutChartBackgroundColors!: string[];
 
+  lineChartDataSet: any;
+  doughnutChartDataSet: any;
+
   ngOnInit(): void {
     this.coin = this.coins[0];
+    this.fillDatasets();
     this.generateLineChart();
     this.generateDoughnutChart();
   }
@@ -51,58 +55,50 @@ export class CoinStatsComponent implements OnInit {
     );
   }
 
+  private fillDatasets() {
+    this.lineChartDataSet = { labels: [], data: [] };
+    this.doughnutChartDataSet = new Map<string, number>();
+
+    this.orderedCoins.forEach((coin: Coin) => {
+      this.fillLineChartDataSet(coin);
+      this.fillDoughnutChartDataSet(coin);
+    });
+  }
+
+  private fillLineChartDataSet(coin: Coin): void {
+    this.lineChartDataSet.labels.push(moment(coin.date).format('DD-MM-yyyy'));
+    this.lineChartDataSet.data.push(coin.high);
+  }
+
+  private fillDoughnutChartDataSet(coin: Coin): void {
+    const year = moment(coin.date).year().toString();
+    let value = parseFloat(
+      this.doughnutChartDataSet.get(year) as unknown as string
+    );
+    if (value) {
+      const newValue = value + parseFloat(coin.volume as unknown as string);
+      this.doughnutChartDataSet.set(year, newValue);
+    } else {
+      this.doughnutChartDataSet.set(year, coin.volume);
+    }
+  }
+
   private generateLineChart(): void {
-    this.lineChartLabels = this.getLineChartLabels();
+    this.lineChartLabels = this.lineChartDataSet.labels;
     this.lineChartTitle = "Distributions of coin's value per day";
     this.lineChartLabel = '$ per day';
-    this.lineChartData = this.getLineChartData();
+    this.lineChartData = this.lineChartDataSet.data;
     this.lineChartBackgroundColor = ColorsTransparent.Green;
     this.lineChartBorderColor = Colors.Green;
   }
 
-  private getLineChartLabels(): string[] {
-    let labels: string[] = [];
-    this.orderedCoins.forEach((coin: Coin) => {
-      labels.push(moment(coin.date).format('DD-MM-yyyy'));
-    });
-    return labels;
-  }
-
-  private getLineChartData(): number[] {
-    let data: number[] = [];
-    this.orderedCoins.forEach((coin: Coin) => {
-      data.push(coin.high);
-    });
-    return data;
-  }
-
   private generateDoughnutChart(): void {
-    this.setDoughnutChartDatasets();
-    this.doughnutChartTitle = "Distributions of coin's volume per year";
-  }
-
-  private setDoughnutChartDatasets(): void {
-    var dataset = this.getDoughnutChartDatasets();
-    this.doughnutChartLabels = Array.from(dataset.keys());
-    this.doughnutChartData = Array.from(dataset.values());
+    this.doughnutChartLabels = Array.from(this.doughnutChartDataSet.keys());
+    this.doughnutChartData = Array.from(this.doughnutChartDataSet.values());
     this.doughnutChartBackgroundColors = this.getDoughnutChartBackgroundColors(
       this.doughnutChartLabels.length
     );
-  }
-
-  private getDoughnutChartDatasets(): Map<string, number> {
-    let dataset = new Map<string, number>();
-    this.orderedCoins.forEach((coin: Coin) => {
-      const year = moment(coin.date).year().toString();
-      let value = parseFloat(dataset.get(year) as unknown as string);
-      if (value) {
-        const newValue = value + parseFloat(coin.volume as unknown as string);
-        dataset.set(year, newValue);
-      } else {
-        dataset.set(year, coin.volume);
-      }
-    });
-    return dataset;
+    this.doughnutChartTitle = "Distributions of coin's volume per year";
   }
 
   private getDoughnutChartBackgroundColors(size: number): string[] {

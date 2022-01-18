@@ -2,7 +2,7 @@
   #basicTable
   [nzBordered]="true"
   [nzData]="coins"
-  [nzFrontPagination]="false"
+  [nzShowSizeChanger]="true"
 >
   <thead>
     <tr>
@@ -22,10 +22,10 @@
         <span class="space-between"
           >$ {{ data.high | numberWithSeparator }}</span
         >
-        <ng-container *ngIf="i < basicTable.data.length - 1">
+        <ng-container *ngIf="i < coins.length - 1">
           <app-comparable-icon
-            [value]="basicTable.data[i].high"
-            [previousValue]="basicTable.data[i + 1].high"
+            [value]="coins[i].high"
+            [previousValue]="coins[i + 1].high"
           ></app-comparable-icon>
         </ng-container>
       </td>
@@ -33,19 +33,19 @@
         <span class="space-between"
           >$ {{ data.low | numberWithSeparator }}</span
         >
-        <ng-container *ngIf="i < basicTable.data.length - 1">
+        <ng-container *ngIf="i < coins.length - 1">
           <app-comparable-icon
-            [value]="basicTable.data[i].low"
-            [previousValue]="basicTable.data[i + 1].low"
+            [value]="coins[i].low"
+            [previousValue]="coins[i + 1].low"
           ></app-comparable-icon>
         </ng-container>
       </td>
       <td [nzAlign]="'right'">
         <span class="space-between">{{ data.open | numberWithSeparator }}</span>
-        <ng-container *ngIf="i < basicTable.data.length - 1">
+        <ng-container *ngIf="i < coins.length - 1">
           <app-comparable-icon
-            [value]="basicTable.data[i].open"
-            [previousValue]="basicTable.data[i + 1].open"
+            [value]="coins[i].open"
+            [previousValue]="coins[i + 1].open"
           ></app-comparable-icon>
         </ng-container>
       </td>
@@ -53,10 +53,10 @@
         <span class="space-between">{{
           data.close | numberWithSeparator
         }}</span>
-        <ng-container *ngIf="i < basicTable.data.length - 1">
+        <ng-container *ngIf="i < coins.length - 1">
           <app-comparable-icon
-            [value]="basicTable.data[i].close"
-            [previousValue]="basicTable.data[i + 1].close"
+            [value]="coins[i].close"
+            [previousValue]="coins[i + 1].close"
           ></app-comparable-icon>
         </ng-container>
       </td>
@@ -64,10 +64,10 @@
         <span class="space-between">{{
           data.volume | numberWithSeparator
         }}</span>
-        <ng-container *ngIf="i < basicTable.data.length - 1">
+        <ng-container *ngIf="i < coins.length - 1">
           <app-comparable-icon
-            [value]="basicTable.data[i].volume"
-            [previousValue]="basicTable.data[i + 1].volume"
+            [value]="coins[i].volume"
+            [previousValue]="coins[i + 1].volume"
           ></app-comparable-icon>
         </ng-container>
       </td>
@@ -75,10 +75,10 @@
         <span class="space-between">{{
           data.marketCap | numberWithSeparator
         }}</span>
-        <ng-container *ngIf="i < basicTable.data.length - 1">
+        <ng-container *ngIf="i < coins.length - 1">
           <app-comparable-icon
-            [value]="basicTable.data[i].marketCap"
-            [previousValue]="basicTable.data[i + 1].marketCap"
+            [value]="coins[i].marketCap"
+            [previousValue]="coins[i + 1].marketCap"
           ></app-comparable-icon>
         </ng-container>
       </td>
